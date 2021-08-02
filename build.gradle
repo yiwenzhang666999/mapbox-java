@@ -3,9 +3,14 @@ buildscript {
 
   repositories {
     maven { url 'https://plugins.gradle.org/m2' }
-    google()
+    //google()
     mavenCentral()
-    jcenter()
+    //jcenter()
+    maven {url'https://maven.aliyun.com/repository/google'}
+
+    maven {url'https://maven.aliyun.com/repository/jcenter'}
+
+    maven {url"https://jitpack.io"}
     maven {
       url 'https://api.mapbox.com/downloads/v2/releases/maven'
       authentication {
@@ -19,6 +24,7 @@ buildscript {
   }
 
   dependencies {
+    classpath "net.ltgt.gradle:gradle-errorprone-plugin:2.0.2"
 
     dependencies.create(pluginDependencies.checkstyle) {
       transitive = false
@@ -39,9 +45,14 @@ tasks.withType(JavaCompile) {
 allprojects {
   repositories {
     maven { url 'https://plugins.gradle.org/m2' }
-    google()
+    //google()
     mavenCentral()
-    jcenter()
+    //jcenter()
+    maven {url'https://maven.aliyun.com/repository/google'}
+
+    maven {url'https://maven.aliyun.com/repository/jcenter'}
+
+    maven {url"https://jitpack.io"}
     maven {
       url 'https://api.mapbox.com/downloads/v2/releases/maven'
       authentication {
@@ -78,7 +89,8 @@ subprojects {
     errorprone dependenciesList.errorprone
 
     // Test Dependencies
-    testCompile dependenciesList.junit
+    //testCompile dependenciesList.junit
+    testImplementation('junit:junit:4.13')
     testCompile dependenciesList.hamcrestJunit
     testCompile dependenciesList.mockito
     testCompile dependenciesList.googleTruth
